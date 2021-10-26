@@ -3,17 +3,15 @@ syntax on
 syntax enable
 set nocompatible
 set encoding=utf-8
+set spell
+set spelllang=en_us
 set cindent
 set autoindent
 set expandtab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-set autoindent
 set number
-set autoread
-set nobackup
-set noswapfile
 set history=1000
 set backspace=2
 set whichwrap+=<,>,h,l
@@ -22,12 +20,22 @@ set clipboard+=unnamed
 set completeopt=preview,menu
 set foldenable
 
+set modifiable
+set write
+set autoread
+set nobackup
+set noswapfile
+
 
 " --- UI
+set wildmenu
 set guioptions-=T
 set guioptions-=m
+set guioptions-=r
 set laststatus=2  " show status bar forever
-set listchars+=tab:>-,trail:-
+" set listchars+=tab:>-,trail:-
+set list listchars=tab:▸\ ,trail:.
+set list
 colorscheme delek
 set statusline=%F%m%r%h%w\ %=%l,%v\ %p%%\ %Y\ %{&ff}\ %{strftime(\"%d/%m/%y\ %H:%M\")}
 " cursor
@@ -40,13 +48,21 @@ set showmatch
 set mouse=a
 set selection=exclusive
 set selectmode=mouse,key
+" netrw
+let g:netrw_winsize = 20
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
 
 
 " --- Key
 let mapleader = "\<space>"
+set timeoutlen=2000
 " common
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
+nnoremap <NL> i<CR><ESC> " C-j
+" terminal
+nnoremap <Leader>t :terminal<CR>
 " vimrc
 nnoremap <Leader>ve :vi ~/.vimrc<CR>
 nnoremap <Leader>vf :source $MYVIMRC<CR>
@@ -64,6 +80,8 @@ nnoremap <Leader>bp :bp<CR>
 nnoremap <Leader>bd :bd<CR>
 nnoremap [b :bp<CR>
 nnoremap ]b :bn<CR>
+" netrw
+nnoremap <C-n> :Lexplore<CR>
 
 
 " --- Misc
