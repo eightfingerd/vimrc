@@ -33,7 +33,6 @@ set guioptions-=T
 set guioptions-=m
 set guioptions-=r
 set laststatus=2  " show status bar forever
-" set listchars+=tab:>-,trail:-
 set list listchars=tab:▸\ ,trail:.
 set list
 colorscheme delek
@@ -63,6 +62,7 @@ nnoremap <Leader>q :q<CR>
 nnoremap <NL> i<CR><ESC> " C-j
 " terminal
 nnoremap <Leader>t :terminal<CR>
+tnoremap <Leader>tq <C-\><C-n><CR>
 " vimrc
 nnoremap <Leader>ve :vi ~/.vimrc<CR>
 nnoremap <Leader>vf :source $MYVIMRC<CR>
@@ -78,8 +78,18 @@ nnoremap <Leader>wv :vs<CR>
 nnoremap <Leader>bn :bn<CR>
 nnoremap <Leader>bp :bp<CR>
 nnoremap <Leader>bd :bd<CR>
+nnoremap <Leader>b0 :bfirst<CR>
+nnoremap <Leader>bx :blast<CR>
 nnoremap [b :bp<CR>
 nnoremap ]b :bn<CR>
+nnoremap [B :bfirst<CR>
+nnoremap ]B :blast<CR>
+nnoremap [q :cprev<CR>
+nnoremap ]q :cnext<CR>
+nnoremap [l :lbefore<CR>
+nnoremap ]l :lafter<CR>
+nnoremap [t :tprev<CR>
+nnoremap ]t :tnext<CR>
 " netrw
 nnoremap <C-n> :Lexplore<CR>
 
