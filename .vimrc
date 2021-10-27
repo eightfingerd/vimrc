@@ -45,9 +45,12 @@ endif
 
 " --- UI
 set wildmenu
+set guioptions-=r
+set guioptions-=R
+set guioptions-=l
+set guioptions-=L
 set guioptions-=T
 set guioptions-=m
-set guioptions-=r
 set laststatus=2  " show status bar forever
 set list listchars=tab:▸\ ,trail:.
 set list
@@ -78,6 +81,8 @@ set timeoutlen=2000
 " vimrc
 nnoremap <Leader>ve :vi ~/.vimrc<CR>
 nnoremap <Leader>vf :source $MYVIMRC<CR>
+autocmd! BufWritePost ~/.vimrc source ~/.vimrc
+
 " common
 nnoremap <Leader>w :w<CR>
 command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
@@ -129,8 +134,28 @@ map <leader>cd :cd %:p:h<CR>:pwd<CR>
 " terminal
 nnoremap <Leader>x :terminal<CR>
 tnoremap <Leader>xq <C-\><C-n><CR>
+" command line
+cnoremap $h e ~/
+cnoremap $d e ~/Desktop/
+cnoremap $j e ./
+"cnoremap $c e <C-\>eCurrentFileDir("e")<CR>
+"cnoremap $q <C-\>eDeleteTillSlash()<CR>
 " netrw
 nnoremap <C-n> :Lexplore<CR>
+" parenthesis/bracket
+vnoremap $1 <ESC>`>a)<ESC>`<i(<ESC>
+vnoremap $2 <ESC>`>a]<ESC>`<i[<ESC>
+vnoremap $3 <ESC>`>a}<ESC>`<i{<ESC>
+vnoremap $$ <ESC>`>a"<ESC>`<i"<ESC>
+vnoremap $q <ESC>`>a'<ESC>`<i'<ESC>
+vnoremap $e <ESC>`>a`<ESC>`<i`<ESC>
+" map auto complete of (, ", ', [
+inoremap $1 ()<ESC>i
+inoremap $2 []<ESC>i
+inoremap $3 {}<ESC>i
+inoremap $4 {<ESC>o}<ESC>O
+inoremap $q ''<ESC>i
+inoremap $e ""<ESC>i
 
 
 " --- Misc
@@ -139,4 +164,6 @@ if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal g'\"" | endif
 endif
+" ab current date
+iab xdate <C-r>=strftime("%d/%m/%y %H:%M:%S")<CR>
 
