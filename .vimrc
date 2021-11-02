@@ -114,7 +114,7 @@ nnoremap [t :tprev<CR>
 nnoremap ]t :tnext<CR>
 try
   set switchbuf=useopen,usetab,newtab
-  set stal=2
+  set stal=1
 catch
 endtry
 " tab
@@ -133,7 +133,7 @@ map <leader>te :tabedit <C-r>=expand("%:p:h")<CR>/
 map <leader>cd :cd %:p:h<CR>:pwd<CR>
 " terminal
 nnoremap <Leader>x :terminal<CR>
-tnoremap <Leader>xq <C-\><C-n><CR>
+tnoremap <Leader>xq <C-\><C-n>:q!<CR>
 " command line
 cnoremap $h e ~/
 cnoremap $d e ~/Desktop/
