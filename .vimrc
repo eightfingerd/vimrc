@@ -1,10 +1,10 @@
-" --- Plugin
+" ---------- Plugin ----------
 filetype on
 filetype plugin on
 filetype indent on
 
 
-" --- Basic
+" ---------- Basic ----------
 syntax on
 syntax enable
 set nocompatible
@@ -43,7 +43,7 @@ else
 endif
 
 
-" --- UI
+" ---------- UI ----------
 set wildmenu
 set guioptions-=r
 set guioptions-=R
@@ -75,14 +75,13 @@ let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 
 
-" --- Key
+" ---------- Key Bindings ----------
 let mapleader = "\<space>"
 set timeoutlen=2000
 " vimrc
 nnoremap <Leader>ve :vi ~/.vimrc<CR>
 nnoremap <Leader>vf :source $MYVIMRC<CR>
 autocmd! BufWritePost ~/.vimrc source ~/.vimrc
-
 " common
 nnoremap <Leader>w :w<CR>
 command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
@@ -156,9 +155,11 @@ inoremap $3 {}<ESC>i
 inoremap $4 {<ESC>o}<ESC>O
 inoremap $q ''<ESC>i
 inoremap $e ""<ESC>i
+" C/C++ lang
+nnoremap <F5> :call CompileRunGCC()<CR>
 
 
-" --- Misc
+" ---------- Misc ----------
 " make cursor at the last place
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
@@ -167,3 +168,22 @@ endif
 " ab current date
 iab xdate <C-r>=strftime("%d/%m/%y %H:%M:%S")<CR>
 
+" ---------- Custom Functions ----------
+" C/C++ lang simple compile and run
+function! CompileRunGCC()
+    execute "w"
+    if &filetype == 'c'
+        if !isdirectory('build')
+            execute "!mkdir build"
+        endif
+        execute "!gcc % -o build/%<"
+        execute "!time ./build/%<"
+    endif
+    if &filetype == 'cc' || &filetype == 'cpp' || &filetype == 'cxx'
+        if !isdirectory('build')
+            execute "!mkdir build"
+        endif
+        execute "!g++ -std=c++11 % -o build/%<"
+        execute "!time ./build/%<"
+    endif
+endfunction
