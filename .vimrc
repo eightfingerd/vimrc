@@ -149,12 +149,12 @@ vnoremap $$ <ESC>`>a"<ESC>`<i"<ESC>
 vnoremap $q <ESC>`>a'<ESC>`<i'<ESC>
 vnoremap $e <ESC>`>a`<ESC>`<i`<ESC>
 " map auto complete of (, ", ', [
-inoremap $1 ()<ESC>i
-inoremap $2 []<ESC>i
-inoremap $3 {}<ESC>i
-inoremap $4 {<ESC>o}<ESC>O
-inoremap $q ''<ESC>i
-inoremap $e ""<ESC>i
+"inoremap $1 ()<ESC>i
+"inoremap $2 []<ESC>i
+"inoremap $3 {}<ESC>i
+"inoremap $4 {<ESC>o}<ESC>O
+"inoremap $q ''<ESC>i
+"inoremap $e ""<ESC>i
 " C/C++ lang
 nnoremap <F5> :call CompileRunGCC()<CR>
 
@@ -187,3 +187,4 @@ function! CompileRunGCC()
         execute "!time ./build/%<"
     endif
 endfunction
+
